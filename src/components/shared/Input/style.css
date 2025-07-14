@@ -1,0 +1,8 @@
+
+.form-group input {
+  padding: 0.8rem;
+  border: 1px solid #C2C1C2;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}

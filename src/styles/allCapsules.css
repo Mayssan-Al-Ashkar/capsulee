@@ -1,0 +1,130 @@
+/* Main Layout */
+.all-capsules-container {
+  min-height: 100vh;
+  background: #f9f9f9;
+}
+
+
+.capsules-content {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 250px; /* Same as sidebar width */
+}
+
+/* Header Section */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-section h1 {
+  color: #52284C;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* Capsules Grid */
+.capsules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Capsule Card */
+.capsule-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(82, 40, 76, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.capsule-card:hover {
+  transform: translateY(-5px);
+}
+
+.capsule-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.capsule-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.capsule-card:hover .capsule-image {
+  transform: scale(1.05);
+}
+
+.capsule-info {
+  padding: 1.5rem;
+}
+
+.capsule-info h3 {
+  color: #52284C;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.capsule-meta {
+  margin-bottom: 1rem;
+}
+
+.capsule-visibility {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.capsule-visibility.public {
+  background: #e6f7ee;
+  color: #0a8a4a;
+}
+
+.capsule-visibility.private {
+  background: #f0e6ef;
+  color: #8A427F;
+}
+
+.details-btn {
+  display: inline-block;
+  background-color: #8A427F;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+  background-color: #6A3260;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .all-capsules-container {
+    flex-direction: column;
+  }
+  
+.capsules-content {
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+
+  
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
