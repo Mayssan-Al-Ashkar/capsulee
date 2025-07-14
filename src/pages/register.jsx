@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
@@ -21,11 +21,11 @@ const Register = ({ toggle }) => {
   }, [email]);
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <h2 className="register-title">Create Account</h2>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Create Account</h2>
         
-        <form className="register-form">
+        <form className="auth-form">
           <div className="form-group">
             <Label text={"username"} htmlFor={"username"}/> 
             <Input
@@ -74,7 +74,10 @@ const Register = ({ toggle }) => {
         </form>
         
         <div className="login-redirect">
-          <p>Already have an account? <Link to="/login" className="login-link">Login</Link></p>
+          <p>Already have an account? <span className="auth-toggle" onClick={toggle}>
+          {" "}
+          Login
+        </span></p>
         </div>
       </div>
     </div>

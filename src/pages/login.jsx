@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/login.css';
+// import '../styles/login.css';
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import googleIcon from '../assets/google.jpg'; 
@@ -20,11 +19,11 @@ const Login = ({ toggle }) => {
   }, [email]);
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2 className="login-title">Login</h2>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Login</h2>
         
-        <form className="login-form">
+        <form className="auth-form">
           <div className="form-group">
             <Label text={"email"} htmlFor={"email"}/> 
             <Input
@@ -65,9 +64,10 @@ const Login = ({ toggle }) => {
           </Link>
           <p>
             Don't have an account?{' '}
-            <Link to="/register" className="register-link">
-              Register
-            </Link>
+            <span className="auth-toggle" onClick={toggle}>
+          {" "}
+          Sign Up
+        </span>
           </p>
         </div>
       </div>
