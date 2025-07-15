@@ -6,7 +6,7 @@ import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
 
-import '../styles/register.css';
+//import '../styles/register.css';
 
 const Register = ({ toggle }) => {
   const [email, setEmail] = useState();
