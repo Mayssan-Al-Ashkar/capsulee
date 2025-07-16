@@ -19,9 +19,6 @@ const Sidebar = () => {
         <NavLink to="/publicWall" className="nav-item" activeClassName="active">
           <span className="icon"></span> Public Wall
         </NavLink>
-        <NavLink to="/settings" className="nav-item" activeClassName="active">
-          <span className="icon"></span> Settings
-        </NavLink>
         
 
       </nav>

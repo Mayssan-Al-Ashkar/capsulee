@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import Sidebar from "../components/shared/sideBar/sideBar";
 import '../styles/createCapsule.css';
 
-const COLORS = ['#ff0000ff', '#fffb00ff', '#2b00ffff','#00ff08ff','#ff00a2ff'];
+const COLORS = ['#d38d8dff', '#dedda2ff', '#b7aee7ff','#b0e0b1ff','#e8b1d4ff'];
 const EMOJIS = ['😊', '😍', '☹️', '😭', '🤧', '🥳'];
 const MOODS = ['Happy','Sad','Angry','Anxious','Excited','Calm']
 
@@ -15,6 +15,7 @@ const TimeCapsuleCreate = () => {
   const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [tag, setTag] = useState('');
   const [showTagInput, setShowTagInput] = useState(false);
+  const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [reveal, setReveal] = useState("");
 
@@ -48,178 +49,140 @@ const TimeCapsuleCreate = () => {
       <div className="create-capsule-content">
         <h1 className="capsule-title">Create Your Capsule</h1>
         <form className="capsule-form" onSubmit={handleSubmit}>
-
-
-
           <div className="capsule-form-grid">
-
-
-
-
-
-
-            {/******************************************LEFT************************************/}
+            {/* LEFT COLUMN */}
             <div className="capsule-form-left">
-
-
-              {/* Color Picker */}
-
-
-              <div className="form-group small-group">
-                <div className="color-dropdown" onClick={() => setShowColorPicker(!showColorPicker)} tabIndex={0} onBlur={() => setShowColorPicker(false)}>
-                <label className="input-label inside">color</label>
-                <div className="color-circle" style={{ background: color }}></div>
-    <span className="color-arrow">▼</span>
-    {showColorPicker && (
-      <div className="color-palette">
-        {COLORS.map((c) => (
-          <div
-            key={c}
-            className="color-circle palette"
-            style={{ background: c }}
-            onClick={() => {
-              setColor(c);
-              setShowColorPicker(false);
-            }}
-          ></div>
-        ))}
-      </div>
-    )}
-  </div>
-</div>
-
-
-
-              {/* Emoji Picker */}
-
-
-              <div className="form-group small-group">
-  <div
-    className="emoji-dropdown"
-    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-    tabIndex={0}
-    onBlur={() => setShowEmojiPicker(false)}
-  >
-    <label className="input-label inside">emoji</label>
-    <span className="emoji-selected">{emoji || '😊'}</span>
-    <span className="emoji-arrow">▼</span>
-    {showEmojiPicker && (
-      <div className="emoji-palette">
-        {EMOJIS.map((e) => (
-          <span
-            key={e}
-            className="emoji-option"
-            onClick={() => {
-              setEmoji(e);
-              setShowEmojiPicker(false);
-            }}
-          >
-            {e}
-          </span>
-        ))}
-      </div>
-    )}
-  </div>
-</div>
-
-
-              
-              {/* Mood Dropdown */}
-
-
-             <div className="form-group small-group">
-  <label htmlFor="mood" className="input-label">mood</label>
-  <input
-    id="mood"
-    type="text"
-    value={mood}
-    onChange={(e) => setMood(e.target.value)}
-    className="mood-input"
-    placeholder="Type your mood"
-  />
-</div>
-
-
-
+              {/* Title Input */}
+              <div className="form-group">
+                <label className="input-label">title</label>
+                <input
+                  className="input"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  placeholder="Type your title"
+                />
+              </div>
               {/* Tag Input */}
-
-<div className="form-group small-group">
-  <label className="input-label">tag</label>
-  <input
-    className="tag-input"
-    value={tag}
-    placeholder="Type your tag"
-    onFocus={() => {
-      if (!tag.startsWith("#")) {
-        setTag("#");
-      }
-    }}
-    onChange={(e) => {
-      const input = e.target.value;
-      if (!input.startsWith("#")) return;
-
-      setTag(input);
-    }}
-  />
-</div>
-
-
-
-
-
-
-            </div>
-
-            {/******************************************RIGHT************************************/}
-            <div className="capsule-form-right">
-
-
-
-
-
+              <div className="form-group">
+                <label className="input-label">tag</label>
+                <input
+                  className="input"
+                  value={tag}
+                  placeholder="Type your tag"
+                  onFocus={() => {
+                    if (!tag.startsWith("#")) {
+                      setTag("#");
+                    }
+                  }}
+                  onChange={e => {
+                    const input = e.target.value;
+                    if (!input.startsWith("#")) return;
+                    setTag(input);
+                  }}
+                />
+              </div>
+              {/* Mood Dropdown */}
               <div className="form-group ">
-  <label className="input-label">location</label>
-  <input
-    className="input"
-    value={location}
-    onChange={(e) => setLocation(e.target.value)}
-    placeholder="Share your location"
-  />
-</div>
-
-
-
-
-               <div className="form-group">
-  <label className="input-label">reveal</label>
-  <input
-    type="date"                        
-    className="input"
-    value={reveal}
-    onChange={(e) => setReveal(e.target.value)}
-    placeholder="Choose the date"     
-  />
-</div>
-
-
-
-
-         <div className="form-group privacy-group">
-  <span className="input-label">privacy</span>
-  <div className="radio-options">
-    <label>
-      <input type="radio" name="privacy" value="private" checked={privacy === 'private'} onChange={() => setPrivacy('private')} /> 
-      private
-    </label>
-    <label>
-      <input type="radio" name="privacy" value="public" checked={privacy === 'public'} onChange={() => setPrivacy('public')} /> 
-      public
-    </label>
-  </div>
-</div>
-
-
-
+                <label htmlFor="mood" className="input-label">mood</label>
+                <input
+                  id="mood"
+                  type="text"
+                  value={mood}
+                  onChange={e => setMood(e.target.value)}
+                  className="mood-input"
+                  placeholder="Type your mood"
+                />
+              </div>
+              {/* Color and Emoji Pickers Side by Side */}
+              <div className="form-group color-emoji-row">
+                {/* Color Picker */}
+                <div className="color-dropdown" onClick={() => setShowColorPicker(!showColorPicker)} tabIndex={0} onBlur={() => setShowColorPicker(false)}>
+                  <label className="input-label inside">color</label>
+                  <div className="color-circle" style={{ background: color }}></div>
+                  <span className="color-arrow">▼</span>
+                  {showColorPicker && (
+                    <div className="color-palette">
+                      {COLORS.map((c) => (
+                        <div
+                          key={c}
+                          className="color-circle palette"
+                          style={{ background: c }}
+                          onClick={() => {
+                            setColor(c);
+                            setShowColorPicker(false);
+                          }}
+                        ></div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {/* Emoji Picker */}
+                <div
+                  className="emoji-dropdown"
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  tabIndex={0}
+                  onBlur={() => setShowEmojiPicker(false)}
+                >
+                  <label className="input-label inside">emoji</label>
+                  <span className="emoji-selected">{emoji || '😊'}</span>
+                  <span className="emoji-arrow">▼</span>
+                  {showEmojiPicker && (
+                    <div className="emoji-palette">
+                      {EMOJIS.map((e) => (
+                        <span
+                          key={e}
+                          className="emoji-option"
+                          onClick={() => {
+                            setEmoji(e);
+                            setShowEmojiPicker(false);
+                          }}
+                        >
+                          {e}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            {/* RIGHT COLUMN */}
+            <div className="capsule-form-right">
+              {/* Location Input */}
+              <div className="form-group">
+                <label className="input-label">location</label>
+                <input
+                  className="input"
+                  value={location}
+                  onChange={e => setLocation(e.target.value)}
+                  placeholder="Share your location"
+                />
+              </div>
+              {/* Reveal Date */}
+              <div className="form-group">
+                <label className="input-label">reveal</label>
+                <input
+                  type="date"
+                  className="input"
+                  value={reveal}
+                  onChange={e => setReveal(e.target.value)}
+                  placeholder="Choose the date"
+                />
+              </div>
+              {/* Privacy */}
+              <div className="form-group privacy-group">
+                <span className="input-label">privacy</span>
+                <div className="radio-options">
+                  <label>
+                    <input type="radio" name="privacy" value="private" checked={privacy === 'private'} onChange={() => setPrivacy('private')} />
+                    private
+                  </label>
+                  <label>
+                    <input type="radio" name="privacy" value="public" checked={privacy === 'public'} onChange={() => setPrivacy('public')} />
+                    public
+                  </label>
+                </div>
+              </div>
+              {/* Surprise */}
               <div className="formm-group surprise-group">
                 <span className="input-label">surprise</span>
                 <label className="switch">
@@ -227,26 +190,10 @@ const TimeCapsuleCreate = () => {
                   <span className="slider round"></span>
                 </label>
               </div>
-
-
-
-
-
             </div>
-
-
-
           </div>
-
-
-
-
           <div className="input-label">type your message</div>
           <textarea className="message-box" placeholder="message" value={message} onChange={e => setMessage(e.target.value)} />
-
-
-
-
           <div className="form-group file-upload-group">
             <label className="input-label">Upload files</label>
             <button type="button" className="upload-btn" onClick={() => fileInputRef.current.click()}>Upload</button>
@@ -260,13 +207,9 @@ const TimeCapsuleCreate = () => {
               ))}
             </div>
           </div>
-
-
           <div className="submit-btn-row">
             <button className="submit-btn" type="submit">submit</button>
           </div>
-
-          
         </form>
       </div>
     </div>

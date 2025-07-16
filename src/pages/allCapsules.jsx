@@ -54,7 +54,7 @@ const AllCapsules = () => {
                   </span>
                 </div>
                 <Link 
-                  to={`/capsule-details/${capsule.id}`} 
+                  to={`/capsuleDetails/${capsule.id}`} 
                   className="details-btn"
                 >
                   View Details
