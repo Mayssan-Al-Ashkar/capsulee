@@ -1,0 +1,463 @@
+/* ========== Layout ========== */
+.time-capsule-create-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f7f6fa;
+}
+
+.create-capsule-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  .time-capsule-create-container {
+    flex-direction: row;
+  }
+
+  .create-capsule-content {
+    margin-left: 250px;
+    padding: 2rem;
+  }
+}
+
+/* ========== Typography ========== */
+.capsule-title {
+  color: #52284C;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ========== Form ========== */
+.capsule-form {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(82, 40, 76, 0.10);
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.capsule-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .capsule-form-grid {
+    flex-direction: row;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.capsule-form-left, .capsule-form-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 1;
+}
+
+/* ========== Input Groups ========== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+.form-group.small-group {
+  max-width: 180px;
+}
+
+.input-label {
+  color: #52284C;
+  font-weight: 500;
+  text-align: left;
+  align-self: flex-start;
+  font-size: 0.95rem;
+}
+
+/* ========== Inputs ========== */
+.input,
+.mood-input,
+.location-input,
+.small-select {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid #C2C1C2;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #faf9fa;
+  color: #52284C;
+  transition: border-color 0.3s ease;
+  height: 2.4rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tag-input {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid #C2C1C2;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #faf9fa;
+  color: #52284C;
+  transition: border-color 0.3s ease;
+  width: 140px;
+  height: 2.4rem;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.mood-input:focus,
+.tag-input:focus,
+.location-input:focus,
+.small-select:focus {
+  outline: none;
+  border-color: #8A427F;
+}
+
+.input::placeholder,
+.mood-input::placeholder,
+.tag-input::placeholder,
+.location-input::placeholder {
+  font-size: 0.85rem;
+  color: #A7A6A8;
+}
+
+/* ========== Dropdowns ========== */
+.color-dropdown,
+.emoji-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: #faf9fa;
+  border: 1.5px solid #C2C1C2;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  min-width: 120px;
+  max-width: 140px;
+  cursor: pointer;
+  position: relative;
+  transition: border 0.2s;
+}
+
+.color-dropdown:focus,
+.color-dropdown:active,
+.emoji-dropdown:focus,
+.emoji-dropdown:active {
+  border: 1.5px solid #8A427F;
+}
+
+/* Color and Emoji Selectors */
+.color-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #C2C1C2;
+  display: inline-block;
+}
+
+.color-circle.palette {
+  border: 0.5px solid #ffffff;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.color-circle.palette:hover {
+  border: 2px solid #52284C;
+}
+
+.color-arrow,
+.emoji-arrow {
+  color: #8A427F;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+
+.color-palette,
+.emoji-palette {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1.5px solid #C2C1C2;
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(82, 40, 76, 0.08);
+}
+
+.emoji-option {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+.emoji-option:hover {
+  background: #C2C1C2;
+}
+
+/* ========== Privacy & Toggle ========== */
+.privacy-group .radio-options {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0.5rem;
+}
+
+.privacy-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 400;
+}
+
+.privacy-group input[type="radio"] {
+  accent-color: #8A427F;
+}
+
+.formm-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #52284C;
+  font-size: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #C2C1C2;
+  transition: .4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #8A427F;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* ========== Message ========== */
+.message-label {
+  color: #52284C;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-box {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 12px;
+  border: 1px solid #C2C1C2;
+  padding: 1.2rem;
+  font-size: 1rem;
+  background: #faf9fa;
+  color: #52284C;
+  resize: vertical;
+  box-shadow: 0 2px 8px rgba(82, 40, 76, 0.03);
+  margin-bottom: 1.2rem;
+  box-sizing: border-box;
+}
+
+/* ========== File Upload ========== */
+.file-upload-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.upload-btn {
+  background: #8A427F;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(82, 40, 76, 0.08);
+  transition: background 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.upload-btn:hover {
+  background: #52284C;
+}
+
+.file-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.file-preview {
+  background-color: #C2C1C2;
+  color: #52284C;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.file-preview button {
+  background: none;
+  border: none;
+  color: #8A427F;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* ========== Submit Button ========== */
+.submit-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.2rem;
+}
+
+.submit-btn {
+  background: #8A427F;
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(82, 40, 76, 0.08);
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: #52284C;
+}
+
+/* ========== Mobile Responsiveness ========== */
+@media (max-width: 767px) {
+  .capsule-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .capsule-form {
+    padding: 1.5rem;
+    gap: 1.2rem;
+  }
+
+  .capsule-form-grid {
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group,
+  .form-group.small-group,
+  .tag-input,
+  .mood-input,
+  .location-input,
+  .input,
+  .small-select,
+  .color-dropdown,
+  .emoji-dropdown {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .message-box {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+
+  .submit-btn-row {
+    justify-content: center;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+
+  .privacy-group .radio-options {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0;
+  }
+
+  .file-upload-group {
+    width: 100%;
+  }
+
+  .upload-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .file-preview-container {
+    justify-content: center;
+  }
+
+  .formm-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

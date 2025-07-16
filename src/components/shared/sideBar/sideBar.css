@@ -58,3 +58,30 @@
   border-top: 1px solid #8A427F;
   margin-bottom: 5rem;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -220px; /* Hide it off-screen */
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0; 
+  }
+
+  .sidebar-toggle-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: #52284C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    font-size: 1.2rem;
+    z-index: 1100;
+    cursor: pointer;
+  }
+}

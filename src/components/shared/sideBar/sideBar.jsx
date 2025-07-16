@@ -10,13 +10,13 @@ const Sidebar = () => {
       </div>
       
       <nav className="sidebar-nav">
-        <NavLink to="/all-capsules" className="nav-item" activeClassName="active">
+        <NavLink to="/allCapsules" className="nav-item" activeClassName="active">
           <span className="icon"></span> My Capsules
         </NavLink>
-        <NavLink to="/create-capsule" className="nav-item" activeClassName="active">
+        <NavLink to="/createCapsule" className="nav-item" activeClassName="active">
           <span className="icon"></span> Create Capsule
         </NavLink>
-        <NavLink to="/public-wall" className="nav-item" activeClassName="active">
+        <NavLink to="/publicWall" className="nav-item" activeClassName="active">
           <span className="icon"></span> Public Wall
         </NavLink>
         <NavLink to="/settings" className="nav-item" activeClassName="active">

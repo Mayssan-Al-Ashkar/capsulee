@@ -1,22 +1,24 @@
+import Auth from "./pages/Auth";
 import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/homePage";
-import LoginPage from "./pages/login"; 
-import RegisterPage from "./pages/register"; 
-import Navbar from "./components/shared/navbar";
+import AllCapsules from "./pages/allCapsules";
+import CreateCapsule from "./pages/createCapsule";
+import SideBar from "./components/shared/sideBar/sideBar";
 import "./styles/app.css"; 
+const discluded = ["/Auth", "/"];
 
-const discluded = ["/login", "/register"];
 
 const App = () => {
   const location = useLocation();
 
   return (
     <div className="App">
-      {discluded.every((route) => route !== location.pathname) && <Navbar />}
+      {discluded.every((route) => route !== location.pathname) && <SideBar/>}
       <Routes>
+        <Route path="/auth" element={<Auth />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/allCapsules" element={<AllCapsules />} />
+        <Route path="/CreateCapsule" element={<CreateCapsule />} />
       </Routes>
     </div>
   );
