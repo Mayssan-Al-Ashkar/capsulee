@@ -17,12 +17,98 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .header-section h1 {
   color: #52284C;
   margin: 0;
   font-size: 1.8rem;
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-inputs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  padding: 0.6rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+  min-width: 150px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #8A427F;
+}
+
+.search-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-btn, .clear-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.search-btn {
+  background-color: #8A427F;
+  color: white;
+}
+
+.search-btn:hover {
+  background-color: #6A3260;
+}
+
+.clear-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.clear-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* Capsule Location and Mood */
+.capsule-location, .capsule-mood {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.capsule-location {
+  color: #8A427F;
+}
+
+.capsule-mood {
+  color: #0a8a4a;
+}
+
+/* No Results Message */
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.1rem;
 }
 
 /* Capsules Grid */
@@ -108,23 +194,77 @@
   background-color: #6A3260;
 }
 
+.capsule-counter {
+  font-size: 1.2rem;
+  color: #7c4d7b;
+  margin: 12px 0;
+  font-family: 'Segoe UI Mono', monospace;
+}
+
+.surprise-message {
+  margin-top: 10px;
+  color: #b94a48;
+  background: #fbeee6;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .all-capsules-container {
     flex-direction: column;
   }
   
-.capsules-content {
-  margin-left: 250px; /* Same as sidebar width */
-  padding: 2rem;
-  box-sizing: border-box;
-}
-
-
+  .capsules-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
   
   .header-section {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+  
+  .search-section {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-inputs {
+    flex-direction: column;
+  }
+  
+  .search-input {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .search-buttons {
+    justify-content: center;
+  }
+  
+  .capsules-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .search-btn, .clear-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .capsule-info {
+    padding: 1rem;
   }
 }

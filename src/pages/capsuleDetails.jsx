@@ -8,10 +8,11 @@ const CapsuleDetails = () => {
     setCapsule({
       title: 'Graduation',
       moods: 'Happy',
+      location: 'University Campus',
       openDate: '15-7-2025',
       tags: ['#grad', '#friends'],
       privacy: 'public',
-      message: "One of the best day of my life, that day I’ve been waiting for…",
+      message: "One of the best day of my life, that day I've been waiting for…",
       image: require('../assets/graduation.jpg'), // Replace with backend image URL
       uploadedFile: {
         name: 'graduation_photo.jpg',
@@ -67,6 +68,10 @@ const CapsuleDetails = () => {
               <div>
                 <div className="capsule-details-label">tags</div>
                 <div className="capsule-details-value">{capsule.tags.join(' ')}</div>
+              </div>
+              <div>
+                <div className="capsule-details-label">location</div>
+                <div className="capsule-details-value">{capsule.location}</div>
               </div>
               <div>
                 <div className="capsule-details-label">privacy</div>
