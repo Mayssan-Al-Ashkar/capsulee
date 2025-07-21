@@ -15,7 +15,7 @@ const capsules = [
     tags: ['education', 'achievement'],
     isPublic: true,
     image: graduationImg,
-    surprise_state: 'off',
+    surprise_state: 'false',
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const capsules = [
     tags: ['travel', 'family'],
     isPublic: false,
     image: summerImg,
-    surprise_state: 'on',
+    surprise_state: 'true',
   },
 ];
 
@@ -55,13 +55,13 @@ const AllCapsules = () => {
   const [surpriseMsgId, setSurpriseMsgId] = useState(null);
 
   const handleSurpriseClick = (capsule) => {
-    if (capsule.surprise_state === 'on') {
+    if (capsule.surprise_state === 'true') {
       setSurpriseMsgId(capsule.id);
     }
   };
 
-  const normalCapsules = capsules.filter(c => c.surprise_state !== 'on');
-  const surpriseCapsules = capsules.filter(c => c.surprise_state === 'on');
+  const normalCapsules = capsules.filter(c => c.surprise_state !== 'true');
+  const surpriseCapsules = capsules.filter(c => c.surprise_state === 'true');
 
   return (
     <div className="all-capsules-container">

@@ -1,76 +1,128 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-// import { Link } from 'react-router-dom';
+import { useState } from "react";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
-
-//import '../styles/register.css';
+import api from '../utils/api';
 
 const Register = ({ toggle }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirm, setconfirm] = useState();
-  const [username, setusername] = useState();
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("DO Something");
-  }, [email]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await api.post('/register', {
+        first_name,
+        last_name,
+        email,
+        password
+      });
+      
+      if (response.status === 200) {
+        setSuccess('Registration successful!');
+        
+        // Store token in localStorage
+        localStorage.setItem('token', response.data.payload.token);
+        localStorage.setItem('user', JSON.stringify(response.data.payload));
+   
+      }
+    } catch (error) {
+      console.log('Registration error:', error);
+      console.log('Error response:', error.response);
+      setError(error.response?.data?.message || 'Registration failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="auth-container">
       <div className="auth-card">
         <h2 className="auth-title">Create Account</h2>
+        {success && <div className="success-message text-center">{success}</div>}
         
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
+          
           <div className="form-group">
-            <Label text={"username"} htmlFor={"username"}/> 
+            <Label text={"First Name"} htmlFor={"first_name"}/> 
             <Input
-        name={"username"}
-        hint={"Enter your username"}
-        onChangeListener={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
+              name={"first_name"}
+              hint={"Enter your first name"}
+              required={true}
+              onChangeListener={(e) => {
+                setFirstName(e.target.value);
+              }}
+            />
+          </div>
+          
+          <div className="form-group">
+            <Label text={"Last Name"} htmlFor={"last_name"}/> 
+            <Input
+              name={"last_name"}
+              hint={"Enter your last name"}
+              required={true}
+              onChangeListener={(e) => {
+                setLastName(e.target.value);
+              }}
+            />
           </div>
           
           <div className="form-group">
             <Label text={"email"} htmlFor={"email"}/> 
-             <Input
-        name={"email"}
-        hint={"Enter your email"}
-        onChangeListener={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
+            <Input
+              name={"email"}
+              hint={"Enter your email"}
+              required={true}
+              onChangeListener={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </div>
           
           <div className="form-group">
             <Label text={"password"} htmlFor={"password"}/> 
-             <Input
-        name={"password"}
-        hint={"Enter your password"}
-        onChangeListener={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
+            <Input
+              name={"password"}
+              hint={"Enter your password"}
+              required={true}
+              onChangeListener={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
           </div>
           
           <div className="form-group">
-            <Label text={"confirm password"} htmlFor={"confirm"}/> 
-             <Input
-        name={"confirm"}
-        hint={"confirm your password"}
-        onChangeListener={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
+            <Label text={"confirm password"} htmlFor={"confirmPassword"}/> 
+            <Input
+              name={"confirmPassword"}
+              hint={"confirm your password"}
+              required={true}
+              onChangeListener={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+            />
           </div>
           
-          <Button text={"Register"} /> 
+          <Button text={loading ? "Registering..." : "Register"} disabled={loading} /> 
         </form>
         
         <div className="login-redirect">

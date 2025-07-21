@@ -27,7 +27,7 @@
   }
 }
 
-/* ========== Typography ========== */
+
 .capsule-title {
   color: #52284C;
   font-size: 2rem;
@@ -42,7 +42,7 @@
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(82, 40, 76, 0.10);
   padding: 2rem;
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -142,21 +142,42 @@
 }
 
 /* ========== Dropdowns ========== */
+.pickers-container {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
 .color-dropdown,
 .emoji-dropdown {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
+  flex: 1;
+  max-width: 160px;
   background: #faf9fa;
   border: 1.5px solid #C2C1C2;
   border-radius: 8px;
   padding: 0.4rem 1rem;
-  min-width: 120px;
-  max-width: 140px;
   cursor: pointer;
   position: relative;
   transition: border 0.2s;
+}
+
+.dropdown-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dropdown-label {
+  color: #52284C;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  color: #8A427F;
+  font-size: 0.9rem;
 }
 
 .color-dropdown:focus,
@@ -185,12 +206,7 @@
   border: 2px solid #52284C;
 }
 
-.color-arrow,
-.emoji-arrow {
-  color: #8A427F;
-  font-size: 0.9rem;
-  margin-left: 0.2rem;
-}
+
 
 .color-palette,
 .emoji-palette {
@@ -463,11 +479,15 @@ input:checked + .slider:before {
   }
 }
 
+
+
+/* Update existing styles */
 .color-emoji-row {
   display: flex;
   flex-direction: row;
   gap: 16px;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .mood-input {

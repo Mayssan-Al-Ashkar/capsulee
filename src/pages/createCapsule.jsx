@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Sidebar from "../components/shared/sideBar/sideBar";
 import '../styles/createCapsule.css';
 
@@ -17,6 +17,19 @@ const TimeCapsuleCreate = () => {
   const [showTagInput, setShowTagInput] = useState(false);
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
+
+  // Get user's location from IP
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        setLocation(`${data.city}, ${data.country_name}`);
+      })
+      .catch(error => {
+        console.error('Error fetching location:', error);
+        setLocation('Location not available');
+      });
+  }, []);
   const [reveal, setReveal] = useState("");
 
   const [privacy, setPrivacy] = useState('private');
@@ -81,25 +94,16 @@ const TimeCapsuleCreate = () => {
                   }}
                 />
               </div>
-              {/* Mood Dropdown */}
-              <div className="form-group ">
-                <label htmlFor="mood" className="input-label">mood</label>
-                <input
-                  id="mood"
-                  type="text"
-                  value={mood}
-                  onChange={e => setMood(e.target.value)}
-                  className="mood-input"
-                  placeholder="Type your mood"
-                />
-              </div>
               {/* Color and Emoji Pickers Side by Side */}
               <div className="form-group color-emoji-row">
+                <div className="pickers-container">
                 {/* Color Picker */}
                 <div className="color-dropdown" onClick={() => setShowColorPicker(!showColorPicker)} tabIndex={0} onBlur={() => setShowColorPicker(false)}>
-                  <label className="input-label inside">color</label>
+                    <div className="dropdown-content">
+                      <span className="dropdown-label">color</span>
                   <div className="color-circle" style={{ background: color }}></div>
-                  <span className="color-arrow">▼</span>
+                      <span className="dropdown-arrow">▼</span>
+                    </div>
                   {showColorPicker && (
                     <div className="color-palette">
                       {COLORS.map((c) => (
@@ -123,9 +127,11 @@ const TimeCapsuleCreate = () => {
                   tabIndex={0}
                   onBlur={() => setShowEmojiPicker(false)}
                 >
-                  <label className="input-label inside">emoji</label>
+                    <div className="dropdown-content">
+                      <span className="dropdown-label">emoji</span>
                   <span className="emoji-selected">{emoji || '😊'}</span>
-                  <span className="emoji-arrow">▼</span>
+                      <span className="dropdown-arrow">▼</span>
+                    </div>
                   {showEmojiPicker && (
                     <div className="emoji-palette">
                       {EMOJIS.map((e) => (
@@ -142,19 +148,20 @@ const TimeCapsuleCreate = () => {
                       ))}
                     </div>
                   )}
+                  </div>
                 </div>
               </div>
             </div>
             {/* RIGHT COLUMN */}
             <div className="capsule-form-right">
-              {/* Location Input */}
+              {/* Mood Input */}
               <div className="form-group">
-                <label className="input-label">location</label>
+                <label className="input-label">mood</label>
                 <input
                   className="input"
-                  value={location}
-                  onChange={e => setLocation(e.target.value)}
-                  placeholder="Share your location"
+                  value={mood}
+                  onChange={e => setMood(e.target.value)}
+                  placeholder="Enter your mood"
                 />
               </div>
               {/* Reveal Date */}
