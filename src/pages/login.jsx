@@ -6,7 +6,8 @@ import Label from "../components/shared/Label";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import api from '../utils/api';
-import googleIcon from '../assets/google.jpg'; 
+import googleIcon from '../assets/google.jpg';
+import axios from 'axios'
 
 const Login = ({ toggle }) => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ const Login = ({ toggle }) => {
 
     try {
       console.log('Sending login request...');
-      const response = await api.post('/login', {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
         email,
         password
       });
@@ -35,11 +36,11 @@ const Login = ({ toggle }) => {
       if (response.status === 200) {
         setSuccess('Login successful!');
         
-        // Store token in localStorage
+        
         localStorage.setItem('token', response.data.payload.token);
         localStorage.setItem('user', JSON.stringify(response.data.payload));
         
-        // Navigate to dashboard after a short delay
+        
         setTimeout(() => {
           navigate('/allCapsules');
         }, 1500);

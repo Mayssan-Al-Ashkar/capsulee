@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 const Register = ({ toggle }) => {
@@ -15,7 +16,7 @@ const Register = ({ toggle }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-
+const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +46,10 @@ const Register = ({ toggle }) => {
         
         localStorage.setItem('token', response.data.payload.token);
         localStorage.setItem('user', JSON.stringify(response.data.payload));
+
+        setTimeout(() => {
+          navigate('/allCapsules');
+        }, 1500);
    
       }
     } catch (error) {

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import Sidebar from "../components/shared/sideBar/sideBar";
 import '../styles/createCapsule.css';
 
+
 const COLORS = ['#d38d8dff', '#dedda2ff', '#b7aee7ff','#b0e0b1ff','#e8b1d4ff'];
 const EMOJIS = ['😊', '😍', '☹️', '😭', '🤧', '🥳'];
 
