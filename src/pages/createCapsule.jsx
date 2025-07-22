@@ -4,7 +4,6 @@ import '../styles/createCapsule.css';
 
 const COLORS = ['#d38d8dff', '#dedda2ff', '#b7aee7ff','#b0e0b1ff','#e8b1d4ff'];
 const EMOJIS = ['😊', '😍', '☹️', '😭', '🤧', '🥳'];
-const MOODS = ['Happy','Sad','Angry','Anxious','Excited','Calm']
 
 const TimeCapsuleCreate = () => {
   const [color, setColor] = useState(COLORS[0]);
@@ -12,13 +11,11 @@ const TimeCapsuleCreate = () => {
   const [emoji, setEmoji] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [mood, setMood] = useState('');
-  const [showMoodPicker, setShowMoodPicker] = useState(false);
   const [tag, setTag] = useState('');
   const [showTagInput, setShowTagInput] = useState(false);
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
 
-  // Get user's location from IP
   useEffect(() => {
     fetch('https://ipapi.co/json/')
       .then(response => response.json())

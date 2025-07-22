@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import Label from "../components/shared/Label";
-import api from '../utils/api';
+import axios from 'axios'
 
 const Register = ({ toggle }) => {
   const [first_name, setFirstName] = useState('');
@@ -14,6 +14,7 @@ const Register = ({ toggle }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
 
 
   const handleSubmit = async (e) => {
@@ -28,18 +29,20 @@ const Register = ({ toggle }) => {
       return;
     }
 
+
     try {
-      const response = await api.post('/register', {
-        first_name,
-        last_name,
-        email,
-        password
-      });
+      const response = await axios.post('http://127.0.0.1:8000/api/register', {
+  first_name,
+  last_name,
+  email,
+  password,
+  password_confirmation: confirmPassword
+});
       
       if (response.status === 200) {
         setSuccess('Registration successful!');
         
-        // Store token in localStorage
+        
         localStorage.setItem('token', response.data.payload.token);
         localStorage.setItem('user', JSON.stringify(response.data.payload));
    
