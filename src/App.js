@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/allCapsules" element={<AllCapsules />} />
         <Route path="/CreateCapsule" element={<CreateCapsule />} />
-        <Route path="/capsuleDetails" element={<CapsuleDetails />} />
+        <Route path="/capsules/details/:id" element={<CapsuleDetails />} />
         <Route path="/publicWall" element={<PublicWall />} />
       </Routes>
     </div>

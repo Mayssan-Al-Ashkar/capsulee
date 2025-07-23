@@ -1,88 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Sidebar from "../components/shared/sideBar/sideBar";
 import '../styles/allCapsules.css';
-import graduationImg from '../assets/graduation.jpg';
-import summerImg from '../assets/summer.jpg';
-
-const capsules = [
-  {
-    id: 1,
-    title: 'Graduation Day',
-    mood: 'Happy',
-    location: 'University Campus',
-    openDate: '2025-6-3',
-    time: '14:00',
-    tags: ['education', 'achievement'],
-    isPublic: true,
-    image: graduationImg,
-    surprise_state: 'off',
-  },
-  {
-    id: 2,
-    title: 'Summer Vacation',
-    mood: 'Excited',
-    location: 'Beach Resort',
-    openDate: '2025-07-17',
-    time: '09:30',
-    tags: ['travel', 'family'],
-    isPublic: false,
-    image: summerImg,
-    surprise_state: 'on',
-  },
-  {
-    id: 3,
-    title: 'Birthday Celebration',
-    mood: 'Happy',
-    location: 'Home',
-    openDate: '2025-08-15',
-    time: '18:00',
-    tags: ['celebration', 'family'],
-    isPublic: true,
-    image: graduationImg,
-    surprise_state: 'off',
-  },
-  {
-    id: 4,
-    title: 'Work Achievement',
-    mood: 'Proud',
-    location: 'Office',
-    openDate: '2025-09-20',
-    time: '16:30',
-    tags: ['work', 'success'],
-    isPublic: true,
-    image: summerImg,
-    surprise_state: 'off',
-  },
-];
 
 const PublicWall = () => {
+  const [capsules, setCapsules] = useState([]);
   const [searchLocation, setSearchLocation] = useState('');
   const [searchMood, setSearchMood] = useState('');
-  const [filteredCapsules, setFilteredCapsules] = useState(
-    capsules.filter(c => c.isPublic && c.surprise_state !== 'on')
-  );
+  const [filteredCapsules, setFilteredCapsules] = useState([]);
+
+  useEffect(() => {
+  axios.get('http://127.0.0.1:8000/api/capsules/public', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
+    .then(response => {
+      const capsulesData = response.data.payload || [];
+
+      setCapsules(capsulesData);
+      setFilteredCapsules(capsulesData);
+    })
+    .catch(error => {
+      console.error("Error fetching public capsules:", error);
+    });
+}, []);
+
 
   const handleSearch = () => {
-    // This will be replaced with backend API call
     const filtered = capsules.filter(capsule => {
-      const isPublic = capsule.isPublic && capsule.surprise_state !== 'on';
       const matchesLocation = !searchLocation || 
-        capsule.location?.toLowerCase().includes(searchLocation.toLowerCase());
+        capsule.location?.city?.toLowerCase().includes(searchLocation.toLowerCase());
       const matchesMood = !searchMood || 
         capsule.mood?.toLowerCase().includes(searchMood.toLowerCase());
       
-      return isPublic && matchesLocation && matchesMood;
+      return matchesLocation && matchesMood;
     });
-    
+
     setFilteredCapsules(filtered);
   };
 
   const handleClearSearch = () => {
     setSearchLocation('');
     setSearchMood('');
-    setFilteredCapsules(
-      capsules.filter(c => c.isPublic && c.surprise_state !== 'on')
-    );
+    setFilteredCapsules(capsules);
   };
 
   return (
@@ -126,10 +87,14 @@ const PublicWall = () => {
             <div key={capsule.id} className="capsule-card">
               <div className="capsule-image-container">
                 <img 
-                  src={capsule.image} 
-                  alt={capsule.title} 
-                  className="capsule-image"
-                />
+  src={
+    capsule.attachments?.length > 0
+      ? `http://127.0.0.1:8000${capsule.attachments[0]}`
+      : 'https://via.placeholder.com/150'
+  } 
+  alt={capsule.title} 
+  className="capsule-image"
+/>
               </div>
               <div className="capsule-info">
                 <h3>{capsule.title}</h3>
@@ -152,4 +117,3 @@ const PublicWall = () => {
 };
 
 export default PublicWall;
-

@@ -42,7 +42,7 @@ const Login = ({ toggle }) => {
         
         
         setTimeout(() => {
-          navigate('/allCapsules');
+          navigate('/publicWall');
         }, 1500);
       }
     } catch (error) {
